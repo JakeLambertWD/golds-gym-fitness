@@ -1,12 +1,26 @@
+import { fetchData, exerciseOptions } from '../utils/fetchData';
+
 import { useEffect, useState } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+
+interface ISearchedExercises {
+	bodyPart: string;
+	equipment: string;
+	gifUrl: string;
+	id: string;
+	name: string;
+	target: string;
+}
 
 export const SearchExercises = () => {
 	const [search, setSearch] = useState('');
 
 	const handleSearch = async () => {
 		if (search) {
-			// const exercisesData = await fetchData()
+			const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+
+			const searchedExercises = exercisesData.filter((exercise: ISearchedExercises) => exercise.name.toLowerCase().includes(search));
+			console.log(searchedExercises);
 		}
 	};
 
