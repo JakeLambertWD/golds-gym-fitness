@@ -3,17 +3,16 @@ import { Stack, Typography } from '@mui/material';
 interface IBodyPart {
 	item: string;
 	bodyPart: string;
-	setBodyPart: {
-		// item: string;
-		// bodyPart: string;
-		// setBodyPart: () => {};
-	};
+	setBodyPart: (value: string) => void;
 }
 
-export const BodyPart = ({ item, bodyPart, setBodyPart }: IBodyPart) => {
+export const BodyPart = ({ item, bodyPart, setBodyPart }: any) => {
 	return (
 		<Stack
 			className='bodyPart-card'
+			justifyContent='center'
+			alignItems='center'
+			spacing={2}
 			sx={{
 				borderTop: bodyPart === item ? '4px solid #ff2625' : '',
 				backgroundColor: '#fff',
@@ -21,6 +20,9 @@ export const BodyPart = ({ item, bodyPart, setBodyPart }: IBodyPart) => {
 				width: '200px',
 				height: '210px',
 				cursor: 'pointer'
+			}}
+			onClick={() => {
+				setBodyPart(item);
 			}}
 		>
 			<img src={require('../assets/icons/gym.png')} alt='dumbell' style={{ width: '40px', height: '40px' }} />
