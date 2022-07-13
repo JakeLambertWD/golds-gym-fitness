@@ -20,7 +20,12 @@ interface IExercises {
 
 export const Exercises = ({ setExercises, bodyPart, exercises }: any) => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [exercisesPerPage, setExercisesPerPage] = useState(6);
+	const [exercisesPerPage, setExercisesPerPage] = useState(9);
+
+	// Pagination
+	const indexOfLastExercise = currentPage * exercisesPerPage;
+	const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+	const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
 
 	useEffect(() => {
 		const fetchExercisesData = async () => {
@@ -38,13 +43,18 @@ export const Exercises = ({ setExercises, bodyPart, exercises }: any) => {
 		fetchExercisesData();
 	}, [bodyPart]);
 
+	const paginate = (e: any, value: number) => {
+		setCurrentPage(value);
+		window.scrollTo({ top: 1800, behavior: 'smooth' });
+	};
+
 	return (
 		<Box id='exercises' mt='50px' p='20px' sx={{ mt: { lg: '110px' } }}>
 			<Typography variant='h3' mb='46px'>
 				Showing results
 			</Typography>
 			<Stack direction='row' flexWrap='wrap' justifyContent='center' sx={{ gap: { lg: '110px', xs: '50px' } }}>
-				{exercises.map((exercise: any, index: any) => (
+				{currentExercises.map((exercise: any, index: any) => (
 					<ExerciseCard key={index} exercise={exercise} />
 				))}
 			</Stack>
@@ -55,7 +65,7 @@ export const Exercises = ({ setExercises, bodyPart, exercises }: any) => {
 						color='standard'
 						variant='outlined'
 						shape='rounded'
-						count={Math.ceil(exercises.length / 9)}
+						count={Math.ceil(exercises.length / exercisesPerPage)}
 						page={currentPage}
 						onChange={paginate}
 						size='large'
