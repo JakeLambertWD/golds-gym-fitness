@@ -1,9 +1,9 @@
 import { Stack, Typography } from '@mui/material';
 
 interface IBodyPart {
-	item: string;
-	bodyPart: string;
-	setBodyPart: (value: string) => void;
+	item?: string;
+	bodyPart?: string;
+	setBodyPart?: (value: string) => void;
 }
 
 export const BodyPart = ({ item, bodyPart, setBodyPart }: any) => {

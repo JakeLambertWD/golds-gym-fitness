@@ -37,8 +37,6 @@ export const SearchExercises = ({ setExercises, bodyPart, setBodyPart }: any) =>
 					exercise.equipment.toLowerCase().includes(search) ||
 					exercise.bodyPart.toLowerCase().includes(search)
 			);
-			console.log('All  exercises');
-			console.log(searchedExercises);
 
 			// reset search box
 			setSearch('');

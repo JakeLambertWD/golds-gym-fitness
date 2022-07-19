@@ -57,6 +57,7 @@ export const Exercises = ({ setExercises, bodyPart, exercises }: any) => {
 				{currentExercises.map((exercise: any, index: any) => (
 					<ExerciseCard key={index} exercise={exercise} />
 				))}
+				
 			</Stack>
 
 			<Stack alignItems='center' mt='100px'>
