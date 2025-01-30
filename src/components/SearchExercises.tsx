@@ -55,7 +55,7 @@ export const SearchExercises = ({
   };
 
   return (
-    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
+    <Stack alignItems="center" mt="37px" justifyContent="center" p="1px">
       <Typography
         fontWeight={700}
         mb="50px"
